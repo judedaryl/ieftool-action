@@ -5,6 +5,12 @@ branding:
   color: purple
 author: 'judedaryl'
 inputs:
+  source:
+    description: 'ief policies source folder'
+    required: true
+  output:
+    description: 'ief policies output folder'
+    required: true    
   config:
     description: 'ieftool configuration file (yaml)'
     required: true
@@ -12,5 +18,5 @@ runs:
   using: 'composite'
   steps:
     - run: |
-        ieftool build src build -c ${{ inputs.config }}
+        ieftool build ${{ inputs.source }} ${{ inputs.output }} -c ${{ inputs.config }}
       shell: bash
