@@ -1,0 +1,12 @@
+name: 'Setup ieftool'
+description: 'Github action to setup ieftool'
+branding:
+  icon: compass
+  color: purple
+author: 'judedaryl'
+runs:
+  using: 'composite'
+  steps:
+    - run: |
+        curl https://raw.githubusercontent.com/judedaryl/go-ieftool/main/install.sh | bash
+      shell: bash

@@ -1,4 +1,4 @@
-name: 'Upload IEF Policies'
+name: 'Upload IEF Policies using ieftool'
 description: 'Github action to deploy IEF policies'
 branding:
   icon: upload-cloud
@@ -21,9 +21,6 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - run: |
-        curl https://raw.githubusercontent.com/judedaryl/go-ieftool/main/install.sh | bash
-      shell: bash
     - run: |
         ieftool deploy ${{ inputs.folder }}
       shell: bash

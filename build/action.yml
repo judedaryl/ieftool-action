@@ -1,0 +1,16 @@
+name: 'Build IEF Policies'
+description: 'Github action to build IEF policies and inject variables'
+branding:
+  icon: box
+  color: purple
+author: 'judedaryl'
+inputs:
+  config:
+    description: 'ieftool configuration file (yaml)'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - run: |
+        ieftool build src build -c ${{ inputs.config }}
+      shell: bash
