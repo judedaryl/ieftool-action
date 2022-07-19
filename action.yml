@@ -1,0 +1,33 @@
+name: 'Upload IEF Policies'
+description: 'Github action to deploy IEF policies'
+branding:
+  icon: upload-cloud
+  color: purple
+author: 'judedaryl'
+inputs:
+  tenant-id:
+    description: 'Azure B2C tenant id'
+    required: true
+  client-id:
+    description: 'Azure B2C application client id'
+    required: true
+  client-secret:
+    description: 'Azure B2C application client secret'
+    required: true
+  folder:
+    description: 'Folder where your policies are'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - run: |
+        curl https://raw.githubusercontent.com/judedaryl/go-ieftool/main/install.sh | bash
+      shell: bash
+    - run: |
+        ieftool deploy ${{ inputs.folder }}
+      shell: bash
+      env:
+        B2C_TENANT_ID: ${{ inputs.tenant-id }}
+        B2C_CLIENT_ID: ${{ inputs.client-id }}
+        B2C_CLIENT_SECRET: ${{ inputs.client-secret }}
